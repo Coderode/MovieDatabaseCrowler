@@ -22,7 +22,7 @@ struct GenreFilter: Filter {
     var value: String = ""
     func isSatisfied<Item>(by item: Item) -> Bool {
         guard let movie = item as? Movie else { return false }
-        return movie.genre?.contains(value) ?? false
+        return movie.genre?.lowercased().contains(value.lowercased()) ?? false
     }
 }
 
@@ -30,7 +30,7 @@ struct YearFilter: Filter {
     var value: String = ""
     func isSatisfied<Item>(by item: Item) -> Bool {
         guard let movie = item as? Movie else { return false }
-        return movie.year?.contains(value) ?? false
+        return movie.year?.lowercased().contains(value.lowercased()) ?? false
     }
 }
 
@@ -38,7 +38,7 @@ struct ActorFilter: Filter {
     var value: String = ""
     func isSatisfied<Item>(by item: Item) -> Bool {
         guard let movie = item as? Movie else { return false }
-        return movie.actors?.contains(value) ?? false
+        return movie.actors?.lowercased().contains(value.lowercased()) ?? false
     }
 }
 
@@ -46,7 +46,7 @@ struct DirectorFilter: Filter {
     var value: String = ""
     func isSatisfied<Item>(by item: Item) -> Bool {
         guard let movie = item as? Movie else { return false }
-        return movie.director?.contains(value) ?? false
+        return movie.director?.lowercased().contains(value.lowercased()) ?? false
     }
 }
 

@@ -1,16 +1,15 @@
 //
-//  LocalDataService.swift
-//  MovieDatabase
+//  MockDataService.swift
+//  MovieDatabaseTests
 //
-//  Created by Sandeep kushwaha on 13/07/24.
+//  Created by Sandeep kushwaha on 27/07/24.
 //
 
-import Foundation
+import XCTest
+@testable import MovieDatabase
 
-
-
-struct LocalMovieDataService: NetworkService {
-    enum LocalMovieDataServiceError: String, Error {
+class MockMovieDataService: NetworkService {
+    enum MockMovieDataServiceError: String, Error {
         case jsonFileNotFound
     }
     func fetchData<T>(with request: URLRequest?) async throws -> T where T : Decodable {
@@ -19,7 +18,7 @@ struct LocalMovieDataService: NetworkService {
     
     private func fetchLocalJsonData<T: Decodable>() throws -> T {
         // Locate the JSON file in the bundle
-        if let url = Bundle.main.url(forResource: "movies", withExtension: "json") {
+        if let url = Bundle(for: type(of: self)).url(forResource: "MockMovies", withExtension: "json") {
             // Read the file content
             let data = try Data(contentsOf: url)
             // Decode the JSON data
@@ -27,7 +26,7 @@ struct LocalMovieDataService: NetworkService {
             let movies = try decoder.decode(T.self, from: data)
             return movies
         } else {
-            throw LocalMovieDataServiceError.jsonFileNotFound
+            throw MockMovieDataServiceError.jsonFileNotFound
         }
     }
 }

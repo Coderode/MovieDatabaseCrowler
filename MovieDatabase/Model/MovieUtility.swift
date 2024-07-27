@@ -83,7 +83,7 @@ struct MovieModelUtility : MovieModelUtilityProtocol {
     
     func searchMovies(with value: String, in movies: Movies) -> Movies {
         return movies.filter { movie in
-            return movie.title?.contains(value) ?? false || movie.genre?.contains(value) ?? false || movie.actors?.contains(value) ?? false || movie.director?.contains(value) ?? false
+            return movie.title?.lowercased().contains(value.lowercased()) ?? false || movie.genre?.lowercased().contains(value.lowercased()) ?? false || movie.actors?.lowercased().contains(value.lowercased()) ?? false || movie.director?.lowercased().contains(value.lowercased()) ?? false
          }
     }
 }
