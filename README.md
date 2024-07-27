@@ -18,3 +18,7 @@ iOS - 17.4
 <img width="467" alt="Screenshot 2024-07-14 at 1 01 29 AM" src="https://github.com/user-attachments/assets/d4723d3d-1219-4dba-805e-c536ce01d6d7">
 
 <img width="467" alt="Screenshot 2024-07-14 at 1 01 40 AM" src="https://github.com/user-attachments/assets/c60e08af-231a-4fd3-90f7-8b38157e90f4">
+
+<img width="467" alt="Screenshot 2024-07-27 at 7 59 19 PM" src="https://github.com/user-attachments/assets/e4286f73-efae-4c72-ba10-58eddb161230">
+
+<img width="467" alt="Screenshot 2024-07-27 at 7 59 22 PM" src="https://github.com/user-attachments/assets/00ce4369-c190-4f24-8a81-27a176fc6c26">
