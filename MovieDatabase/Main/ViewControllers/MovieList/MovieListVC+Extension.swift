@@ -14,12 +14,12 @@ extension MovieListVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.movieList.count
+        return self.viewModel.movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(MovieListTableViewCell.self)", for: indexPath) as! MovieListTableViewCell
-        cell.configure(with: self.movieList[indexPath.row])
+        cell.configure(with: self.viewModel.movies[indexPath.row])
         return cell
     }
     
@@ -28,7 +28,7 @@ extension MovieListVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        AppRouter.shared.navigate(to: .movieDetail(movie: self.movieList[indexPath.row]))
+        AppRouter.shared.navigate(to: .movieDetail(movie: self.viewModel.movies[indexPath.row]))
     }
 }
 

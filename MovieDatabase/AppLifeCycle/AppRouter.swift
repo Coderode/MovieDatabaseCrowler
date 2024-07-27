@@ -37,7 +37,8 @@ class AppRouter {
     }
     
     private func createMoviewListVC(movies: Movies) -> UIViewController {
-        return MovieListVC.instantiate(movies: movies)
+        let sortOptions : [Sort] = [TitleAscendingSort(), TitleDescendingSort(), YearSort()]
+        return MovieListVC.instantiate(movies: movies, sortOptions: sortOptions)
     }
     
     private func createMoviewDatabaseVC() -> UIViewController {

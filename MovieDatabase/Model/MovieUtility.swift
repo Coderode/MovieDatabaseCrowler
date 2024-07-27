@@ -12,24 +12,23 @@ protocol MovieModelUtilityProtocol {
     func getProcessedYearsList(movies: Movies) -> [String]
     func getProcessedActorsList(movies: Movies) -> [String]
     func getProcessedDirectorsList(movies: Movies) -> [String]
-    func filterMovies(with value: String, and key: MovieDatasourceEnum, in movies: Movies) -> Movies
     func searchMovies(with value: String, in movies: Movies) -> Movies
+    func getMovieFilter(with value: String, and type: MovieDataFilter) -> Filter
 }
 
 struct MovieModelUtility : MovieModelUtilityProtocol {
-    
-    func filterMovies(with value: String, and key: MovieDatasourceEnum, in movies: Movies) -> Movies {
-        switch key {
+    func getMovieFilter(with value: String, and type: MovieDataFilter) -> Filter {
+        switch type {
         case .genre:
-            return movies.filter({ $0.genre?.contains(value) ?? false })
+            return GenreFilter(value: value)
         case .year:
-            return movies.filter({ $0.year?.contains(value) ?? false })
-        case .actors:
-            return movies.filter({ $0.actors?.contains(value) ?? false })
+            return YearFilter(value: value)
         case .directors:
-            return movies.filter({ $0.director?.contains(value) ?? false })
-        default:
-            return movies
+            return DirectorFilter(value: value)
+        case .actors:
+            return ActorFilter(value: value)
+        case .allMovies:
+            return AllMoviesFilter()
         }
     }
     

@@ -15,6 +15,7 @@ protocol SectionHeaderViewDelegate : AnyObject {
 class SectionHeaderView: UIView {
     
     var section: Int
+    var shouldToggle: Bool = false
     weak var delegate: SectionHeaderViewDelegate?
     var isExpanded: Bool = false {
         didSet {
@@ -41,16 +42,16 @@ class SectionHeaderView: UIView {
         return imageView
     }()
     
-    init(title: String, section: Int, isExpanded: Bool) {
+    init(title: String, section: Int, isExpanded: Bool, shouldToggle : Bool = true) {
         self.section = section
         super.init(frame: .zero)
         self.isExpanded = isExpanded
+        self.shouldToggle = shouldToggle
         self.backgroundColor = .lightGray
         titleLabel.text = title
         self.addSubview(titleLabel)
         self.addSubview(separatorLine)
         self.addSubview(arrowImageView)
-        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
@@ -75,7 +76,9 @@ class SectionHeaderView: UIView {
         self.addGestureRecognizer(tapGesture)
     }
     @objc func didTap() {
-        self.isExpanded.toggle()
+        if shouldToggle {
+            self.isExpanded.toggle()
+        }
         self.delegate?.didTapHeaderView(section: self.section)
     }
     
@@ -84,7 +87,11 @@ class SectionHeaderView: UIView {
     }
     
     private func updateArrowImage(isExpanded: Bool) {
-        let arrowImage = isExpanded ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")
-        arrowImageView.image = arrowImage
+        if shouldToggle {
+            let arrowImage = isExpanded ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")
+            arrowImageView.image = arrowImage
+        } else {
+            arrowImageView.image = UIImage(systemName: "chevron.right")
+        }
     }
 }

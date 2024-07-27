@@ -60,6 +60,12 @@ class MovieDatabaseVC: UIViewController {
                 self?.view.removeLoader()
             }
         }
+        
+        self.viewModel.isSearchEnabled.bind { [weak self] isEnabled in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
     
     @objc func refreshData() {

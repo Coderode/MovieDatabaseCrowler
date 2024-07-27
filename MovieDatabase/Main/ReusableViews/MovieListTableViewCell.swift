@@ -60,7 +60,6 @@ class MovieListTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            thumbnailImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             thumbnailImageView.widthAnchor.constraint(equalToConstant: 80),
             thumbnailImageView.heightAnchor.constraint(equalToConstant: 100),
             thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
@@ -74,7 +73,7 @@ class MovieListTableViewCell: UITableViewCell {
         titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
         languageLabel.font = .systemFont(ofSize: 16, weight: .regular)
         yearLabel.font = .systemFont(ofSize: 14, weight: .regular)
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 2
         languageLabel.numberOfLines = 0
         titleLabel.textColor = .black
         languageLabel.textColor = .black

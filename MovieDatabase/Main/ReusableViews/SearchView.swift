@@ -11,6 +11,7 @@ import UIKit
 protocol SearchHeaderVeiwDelegate: AnyObject {
     func didChangeSearchField(text : String)
     func didTapSearchField()
+    func didTapDonekeyBoardButton(text: String)
 }
 
 class SearchHeaderVeiw: UIView {
@@ -83,6 +84,7 @@ class SearchHeaderVeiw: UIView {
 extension SearchHeaderVeiw: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        self.delegate?.didTapDonekeyBoardButton(text: textField.text ?? "")
         return true
     }
 }
